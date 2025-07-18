@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+
+  church_web:
+    build: .
+    container_name: church_web
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    restart: always
+    ports:
+      - "8000:8000"
+    depends_on:
+      - church_db
+      - rabbitmq
+    environment:
+      - DB_NAME=church
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_HOST=church_db
+      - NGROK_DOMAIN=1b765ed006d2.ngrok-free.app
+
+  church_worker:
+    build: .
+    container_name: church_worker
+    command: celery -A core worker -l INFO
+    restart: always
+    depends_on:
+      - church_db
+      - rabbitmq
+
+  church_db:
+    image: postgres:15
+    container_name: church_db
+    restart: always
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=church
+
+  rabbitmq:
+    image: rabbitmq:4.0-management
+    container_name: church_rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+
+volumes:
+  postgres_data:
+  rabbitmq-data:
