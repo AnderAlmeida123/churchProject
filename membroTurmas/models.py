@@ -35,5 +35,13 @@ class MembroTurma(BaseResponsavelModel):
         verbose_name = 'Membro Turma'
         verbose_name_plural = 'Membros Turmas'
 
+    @property
+    def data_entrada_formatada(self):
+        return self.data_entrada.strftime('%d/%m/%Y') if self.data_entrada else None
+
+    @property
+    def data_saida_formatada(self):
+        return self.data_saida.strftime('%d/%m/%y') if self.data_saida else None
+
     def __str__(self):
         return f'{self.pessoa} - {self.turma}'

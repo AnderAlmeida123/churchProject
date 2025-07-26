@@ -6,6 +6,9 @@ class EnderecoAdminForm(forms.ModelForm):
     class Meta:
         model = Endereco
         fields = '__all__'
+        widgets = {
+            'cep': forms.TextInput(attrs={'class': 'contato-mask'}),
+        }
 
     class Media:
         js = (
