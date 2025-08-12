@@ -104,7 +104,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-# DATABASES = {    <<< aqui utilizado sem o docker, apenas logando pelo postgresql
+# DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 #         'NAME': 'church',
@@ -117,16 +117,23 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 import os
 
+def get_env_var(key, default):
+    val = os.environ.get(key, default)
+    if isinstance(val, bytes):
+        val = val.decode('utf-8', errors='ignore')
+    return val
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME', 'church'),
-        'USER': os.environ.get('DB_USER', 'postgres'),
-        'PASSWORD': os.environ.get('DB_PASSWORD', 'postgres'),
-        'HOST': os.environ.get('DB_HOST', 'church_db'),  # <- ESSENCIAL
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': get_env_var('DB_NAME', 'church'),
+        'USER': get_env_var('DB_USER', 'postgres'),
+        'PASSWORD': get_env_var('DB_PASSWORD', 'postgres'),
+        'HOST': get_env_var('DB_HOST', 'church_db'),
         'PORT': '5432',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

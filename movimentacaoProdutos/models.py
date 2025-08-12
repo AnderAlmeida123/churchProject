@@ -13,13 +13,30 @@ class MovimentacaoProduto(BaseResponsavelModel):
         (SAIDA, 'Saída'),
     )
 
-    tipo = models.CharField(max_length=10, choices=TIPO_CHOICES)
-    produto = models.ForeignKey(Produto, on_delete=models.PROTECT)
-    quantidade = models.PositiveIntegerField()
-    setor_destino = models.ForeignKey(
-        Setor, on_delete=models.PROTECT, null=True, blank=True
+    tipo = models.CharField(
+        max_length=10,
+        choices=TIPO_CHOICES
     )
-    observacao = models.TextField(blank=True, null=True)
+
+    produto = models.ForeignKey(
+        Produto,
+        on_delete=models.PROTECT
+    )
+
+    quantidade = models.PositiveIntegerField(
+    )
+
+    setor_destino = models.ForeignKey(
+        Setor,
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True
+    )
+
+    observacao = models.TextField(
+        blank=True,
+        null=True
+    )
 
     class Meta:
         verbose_name = 'Movimento de Estoque'

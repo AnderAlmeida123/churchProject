@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
         $('.contato-mask').each(function () {
             const input = $(this);
             if (input.attr('id') === 'id_cep') {
-                input.mask('0000-000')
+                input.mask('00000-000')
             }
         })
 

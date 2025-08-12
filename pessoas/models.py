@@ -29,6 +29,8 @@ class Pessoa(models.Model):
         max_length=14,
         unique=True,
         verbose_name="CPF",
+        blank=False,
+        null=False,
         validators=[
             RegexValidator(
                 regex=r'^\d{3}\.\d{3}\.\d{3}\-\d{2}$',

@@ -32,9 +32,6 @@ class Tesouraria(BaseResponsavelModel):
         verbose_name="Data da Movimentação"
     )
 
-    entrada_saida = models.BooleanField(
-        verbose_name="Entrada ou Saída"
-    )
 
     setor = models.ForeignKey(
         'setores.Setor',
@@ -48,5 +45,5 @@ class Tesouraria(BaseResponsavelModel):
         ordering = ["-data_movimentacao"]
 
     def __str__(self):
-        tipo = "Entrada" if self.entrada_saida else "Saída"
-        return f"{tipo} - {self.descricao} - R$ {self.valor}"
+        return f"{self.get_tipo_movimentacao_display()} - {self.descricao} - R$ {self.valor} - str{self.setor}"
+

@@ -3,12 +3,32 @@ from django.core.validators import MinValueValidator
 from decimal import Decimal
 
 from core.models import BaseResponsavelModel
-from pessoas.models import Pessoa  # Ajuste conforme o local do seu model Pessoa
-
+from pessoas.models import Pessoa
 
 class Dizimo(BaseResponsavelModel):
+    MESES_DO_ANO = [
+        ('Janeiro', 'Janeiro'),
+        ('Fevereiro', 'Fevereiro'),
+        ('Março', 'Março'),
+        ('Abril', 'Abril'),
+        ('Maio', 'Maio'),
+        ('Junho', 'Junho'),
+        ('Julho', 'Julho'),
+        ('Agosto', 'Agosto'),
+        ('Setembro', 'Setembro'),
+        ('Outubro', 'Outubro'),
+        ('Novembro', 'Novembro'),
+        ('Dezembro', 'Dezembro'),
+    ]
+
+    TIPOS_PAGAMENTO = [
+        ('Dinheiro', 'Dinheiro'),
+        ('Pix', 'Pix'),
+    ]
+
     mes = models.CharField(
         max_length=20,
+        choices=MESES_DO_ANO,
         verbose_name="Mês",
         help_text="Informe o mês de referência do dízimo."
     )
@@ -21,7 +41,8 @@ class Dizimo(BaseResponsavelModel):
     )
 
     tipo_pagamento = models.CharField(
-        max_length=50,
+        max_length=20,
+        choices=TIPOS_PAGAMENTO,
         verbose_name="Tipo de Pagamento"
     )
 

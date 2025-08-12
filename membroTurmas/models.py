@@ -10,11 +10,15 @@ class MembroTurma(BaseResponsavelModel):
         verbose_name='Data de entrada',
         auto_now=False,
         auto_now_add=False,
+        blank=True,
+        null=True,
     )
 
     data_saida = models.DateField(
         verbose_name='Data de saida',
         auto_now=False,
+        blank=True,
+        null=True,
     )
 
     pessoa = models.ForeignKey(

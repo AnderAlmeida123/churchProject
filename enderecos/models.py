@@ -24,13 +24,20 @@ class Endereco(BaseResponsavelModel):
     rua = models.CharField(
         verbose_name='Rua',
         max_length=30,
+        null=True,
+        blank=True,
     )
     numero = models.CharField(
         verbose_name='Numero',
+        max_length=30,
+        null=True,
+        blank=True,
     )
     referencia = models.CharField(
         verbose_name='Referencia',
         max_length=100,
+        blank=True,
+        null=True,
     )
 
     pessoa = models.ForeignKey(

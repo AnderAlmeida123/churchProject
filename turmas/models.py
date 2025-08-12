@@ -4,8 +4,8 @@ from pessoas.models import Pessoa
 
 
 class Turma(BaseResponsavelModel):
-    nome = models.CharField(
-        verbose_name='nome',
+    nome_turma = models.CharField(
+        verbose_name='nome da turma',
         max_length=100,
     )
 

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from contatos.models import Contato
+from .models import Contato
 from .forms import ContatoAdminForm
 
 
@@ -11,8 +11,9 @@ class ContatoAdmin(admin.ModelAdmin):
         'celular_formatado',
         'telefone_formatado',
         'email',
+        'pessoa',
         'criado_em',
         'atualizado_em'
     )
-    search_fields = ('celular', 'telContato', 'email', 'responsavel__username')
+    search_fields = ('celular', 'telContato', 'email', 'responsavel__username', 'pessoa__nome')
     list_filter = ('responsavel',)

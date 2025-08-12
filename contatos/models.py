@@ -1,5 +1,6 @@
 from django.db import models
 from core.models import BaseResponsavelModel
+from pessoas.models import Pessoa
 
 
 class Contato(BaseResponsavelModel):
@@ -16,6 +17,13 @@ class Contato(BaseResponsavelModel):
     email = models.EmailField(
         blank=True,
         verbose_name='Email',
+    )
+
+    pessoa = models.ForeignKey(
+        Pessoa,
+        on_delete=models.PROTECT,
+        related_name="contato",
+        verbose_name="Pessoa"
     )
 
     class Meta:
@@ -36,4 +44,4 @@ class Contato(BaseResponsavelModel):
         return self.telContato
 
     def __str__(self):
-        return f"{self.celular} - {self.telContato} - {self.email}"
+        return f"{self.celular} - {self.telContato} - {self.email} - {self.pessoa}"

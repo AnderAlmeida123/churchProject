@@ -8,11 +8,14 @@ from setores.models import Setor
 class MembroSetor(BaseResponsavelModel):
     data_entrada = models.DateField(
         verbose_name='Data de entrada',
+        null=True,
+        blank=True,
     )
 
     data_saida = models.DateField(
         verbose_name='Data de saida',
-
+        blank=True,
+        null=True,
     )
 
     pessoa = models.ForeignKey(
@@ -42,4 +45,4 @@ class MembroSetor(BaseResponsavelModel):
         return self.data_saida.strftime('%d/%m/%Y') if self.data_saida else None
 
     def __str__(self):
-        return f'{self.pessoa} - {self.setor}'
+        return str(self.setor.nome_setor)  # ✅ ou apenas str(self.setor)
