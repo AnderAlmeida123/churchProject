@@ -1,13 +1,10 @@
 FROM python:3.13-slim
 
-# Define o diretório de trabalho dentro do container
 WORKDIR /church
 
-# Evita criação de arquivos .pyc e ativa logs sem buffer
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# Atualiza pacotes e instala dependências do sistema (inclusive para Playwright)
 RUN apt update && apt install -y \
     build-essential \
     libnss3 \
@@ -27,26 +24,23 @@ RUN apt update && apt install -y \
     libxcb1 \
     libx11-6 \
     libglib2.0-0 \
-    libgdk-pixbuf2.0-0 \
+    libgdk-pixbuf-2.0-0 \
     libfontconfig1 \
     libcairo2 \
+    libjpeg62-turbo \
+    fonts-unifont \
     curl \
     wget \
     unzip \
     && apt clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Copia os arquivos do projeto para dentro do container
 COPY . .
 
-# Atualiza o pip
 RUN pip install --upgrade pip
-
-# Instala as dependências do projeto
 RUN pip install -r requirements.txt
 
-# Instala os navegadores necessários para o Playwright (ex: Chromium, Firefox, WebKit)
-RUN playwright install --with-deps
+# Instala navegadores do Playwright (sem --with-deps pois já instalamos as libs)
+RUN playwright install
 
-# Expõe a porta padrão do Django
 EXPOSE 8000

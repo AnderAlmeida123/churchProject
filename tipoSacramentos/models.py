@@ -1,9 +1,10 @@
 from django.db import models
-
+from django.contrib.postgres.fields import CITextField
 
 class TipoSacramento(models.Model):
     nome = models.CharField(
         max_length=100,
+        unique=True,
         verbose_name="Nome do Tipo Sacramento",
     )
 
@@ -23,6 +24,7 @@ class TipoSacramento(models.Model):
     class Meta:
         verbose_name = "Tipo Sacramento"
         verbose_name_plural = "Tipo Sacramentos"
+
 
     def __str__(self):
         return self.nome

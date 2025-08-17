@@ -16,4 +16,4 @@ class ContatoAdmin(admin.ModelAdmin):
         'atualizado_em'
     )
     search_fields = ('celular', 'telContato', 'email', 'responsavel__username', 'pessoa__nome')
-    list_filter = ('responsavel',)
+    list_filter = ('responsavel','pessoa__nome')

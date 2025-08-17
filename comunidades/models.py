@@ -19,4 +19,4 @@ class Comunidade(BaseResponsavelModel):
 
 
     def __str__(self):
-        return f"{self.nome_comunidade} - {self.bairro}"
+        return self.nome_comunidade

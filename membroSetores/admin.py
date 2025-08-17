@@ -19,4 +19,4 @@ class MembroSetorAdmin(admin.ModelAdmin):
     )
 
     search_fields = ['pessoa__nome', 'setor__nome']
-    list_filter = ('setor', 'data_entrada', 'data_saida', 'pessoa')
+    list_filter = ('setor', 'data_entrada', 'data_saida', 'pessoa','setor__nome_setor')

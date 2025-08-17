@@ -7,6 +7,7 @@ from movimentacaoProdutos.utils import calcular_estoque_produto
 class ProdutoAdmin(admin.ModelAdmin):
     list_display = ('id', 'nome', 'categoria', 'mostrar_estoque', 'ativo')
     search_fields = ('nome', 'categoria')
+    list_filter = ('nome','categoria')
 
     def mostrar_estoque(self, obj):
         return calcular_estoque_produto(obj.id)

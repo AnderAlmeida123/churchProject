@@ -10,4 +10,4 @@ class MovimentacaoProdutoAdmin(admin.ModelAdmin):
 
     list_display = ('id', 'tipo', 'produto', 'quantidade', 'setor_destino', 'responsavel', 'criado_em')
     search_fields = ('produto__nome', 'setor_destino__nome')
-    list_filter = ('tipo', 'produto', 'setor_destino')
+    list_filter = ('tipo', 'produto__nome', 'setor_destino',)

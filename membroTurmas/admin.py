@@ -19,4 +19,4 @@ class MembroTurmaAdmin(admin.ModelAdmin):
     )
 
     search_fields = ['pessoa__nome', 'turma__nome']
-    list_filter = ('turma', 'data_entrada', 'data_saida', 'pessoa')
+    list_filter = ('turma', 'data_entrada', 'data_saida', 'pessoa','turma__nome_turma')

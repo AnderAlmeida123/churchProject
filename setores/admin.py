@@ -13,4 +13,4 @@ class SetorAdmin(admin.ModelAdmin):
         'atualizado_em'
     )
     search_fields = ('nome_setor','responsavel__username')
-    list_filter = ('responsavel',)
+    list_filter = ('responsavel','nome_setor')

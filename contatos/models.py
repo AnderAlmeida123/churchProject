@@ -10,7 +10,7 @@ class Contato(BaseResponsavelModel):
         verbose_name='Celular',
     )
     telContato = models.CharField(
-        max_length=12,
+        max_length=16,
         blank=True,
         verbose_name='Telefone',
     )

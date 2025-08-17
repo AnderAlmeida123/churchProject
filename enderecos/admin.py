@@ -9,4 +9,4 @@ class EnderecoAdmin(admin.ModelAdmin):
     list_display = ('id', 'cep_formatado', 'estado', 'cidade', 'bairro', 'rua', 'numero', 'referencia', 'atualizado_em',
                     'criado_em', 'responsavel', 'pessoa')
     search_fields = ['cep', 'rua', 'pessoa__user__first_name']
-    list_filter = ('cep', 'rua', 'pessoa')
+    list_filter = ('cep', 'rua', 'pessoa','bairro')
